@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Be My Valentine?</title>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      z-index: 2;
+    }
+
+    h1, h2 {
+      color: white;
+    }
+
+    img {
+      width: 250px;
+      margin: 20px 0;
+    }
+
+    button {
+      padding: 15px 40px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 10px;
+      transition: 0.3s ease;
+    }
+
+    #yesBtn {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    #noBtn {
+      background-color: #f44336;
+      color: white;
+    }
+
+   
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    /* 💝 Popup */
+    .popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: 0.3s ease;
+      z-index: 5;
+    }
+
+    .popup.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .popup-content {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      animation: pop 0.4s ease;
+      max-width: 300px;
+    }
+
+    .popup-content h2 {
+      color: #ff4d6d;
+      margin-top: 15px;
+    }
+
+    .popup-content img {
+      width: 200px;
+    }
+
+    @keyframes pop {
+      from {
+        transform: scale(0.6);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>I knew it! 💖 I love you too!</h1>
+
+    <img width="300px" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExajdxdWI5ZmQ1czA2NjMycTZiNnlubDZyYm1lZDdudG8ycDhoamRwcyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/KztT2c4u8mYYUiMKdJ/200.webp" alt="Love GIF">
+
+    <h2>Will you be my Valentine? 💘</h2>
+
+    <button id="yesBtn" onclick="finalYes()">Yes</button>
+    <button id="noBtn" onclick="shrinkNo()">No</button>
+  </div>
+
+  <!-- 💕 Popup -->
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <img width="250px" src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDBlNmFxd21tNjI5YThleXo0cHZoeHo2YnA4aHJzdXZycGxoZGp2NyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/rT7WPCciy8oETxLmUV/200w.webp" alt="Yay GIF">
+      <h2>Yay! 💕<br>Best Valentine ever!</h2>
+    </div>
+  </div>
+
+  <script>
+    let yesScale = 1;
+    let noScale = 1;
+
+    function shrinkNo() {
+      yesScale += 0.2;
+      noScale -= 0.2;
+
+      document.getElementById("yesBtn").style.transform = `scale(${yesScale})`;
+      document.getElementById("noBtn").style.transform = `scale(${noScale})`;
+
+      if (noScale <= 0.3) {
+        const noBtn = document.getElementById("noBtn");
+        noBtn.disabled = true;
+        noBtn.style.opacity = "0.5";
+      }
+    }
+
+    function finalYes() {
+      document.getElementById("popup").classList.add("active");
+    }
+
+   
+  </script>
+
+</body>
+</html>
